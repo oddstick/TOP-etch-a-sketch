@@ -1,4 +1,4 @@
-# odin-etch-a-sketch
+# TOP-etch-a-sketch
 
 Here is the assignment: 
 
