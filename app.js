@@ -7,7 +7,7 @@ function main() {
     // function prompts user for grid size returns "gridSize"
     // calls createGrid() if user input is a number between min (16) and max (100)
     function getUserGridSize() {
-        let gridSize = prompt("How many squares per side would you like? Please choose a number between 1 and 100.", "16");
+        let gridSize = prompt("How many squares per side would you like? Please choose a number between 16 and 100.", "16");
         // check that user input is passed correctly to gridSize
         // console.log("gridSize: " + gridSize); 
 
