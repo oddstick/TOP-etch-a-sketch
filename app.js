@@ -7,12 +7,13 @@ main();
 
 function main() {
     document.getElementById("gridSizePrompt").addEventListener("click", getUserGridSize);
-
+    document.getElementById("startOver").addEventListener("click", startOver);
+    
     // function prompts user for grid size returns "gridSize"
     // calls createGrid() if user input is a number between min (1) and max (100)
     function getUserGridSize() {
         let gridSize = prompt("How many squares per side would you like? Please choose a number between 1 and 100.", "16");
-        console.log(gridSize); // check that user input is passed correctly to gridSize
+        console.log("gridSize: " + gridSize); // check that user input is passed correctly to gridSize
         
         const min = 1;
         const max = 100;
@@ -23,20 +24,27 @@ function main() {
 
         else if (gridSize >= min || gridSize <= max) {
             createGrid(gridSize);
+            document.getElementById("gridSizePrompt").removeEventListener("click", getUserGridSize);
         }  
     };
 
     function createGrid(gridSize) {
 
-        for (let i = 0; i < gridSize; i *= gridSize) {
+        for (let i = 0; i < (gridSize * gridSize); i += 1) {
             const container = document.getElementById("grid-container");
             const gridSquare = document.createElement("div");
 
             gridSquare.classList.add("grid-square");
 
             container.appendChild(gridSquare);
+            
+            console.log("Number of div nodes created:" + (document.getElementsByTagName("div").length - 1));
         }
     };
+
+    function startOver() {
+        window.location.reload();
+    }
     
 };
 
