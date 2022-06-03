@@ -28,7 +28,7 @@ function main() {
 
     function createGrid(gridSize) {
 
-        for (let i = 0; i < gridSize; i *=1) {
+        for (let i = 0; i < gridSize; i *= gridSize) {
             const container = document.getElementById("grid-container");
             const gridSquare = document.createElement("div");
 
