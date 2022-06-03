@@ -1,5 +1,17 @@
 .container {
     /* adding styles just so I can see the div */
+    display: grid;
+    grid-template-columns: repeat(autofit, 1fr); /* just testing*/
     border: 4px solid black;
     background-color: lightblue;
+    width: 960px;
+    height: 960px;
+
+}
+
+.grid-square {
+    border: 1px solid hotpink;
+    background-color: pink;
+    max-width: 1fr;
+    max-height: 1fr;
 }

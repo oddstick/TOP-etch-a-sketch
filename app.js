@@ -22,12 +22,20 @@ function main() {
         }
 
         else if (gridSize >= min || gridSize <= max) {
-            createGrid();
+            createGrid(gridSize);
         }  
     };
 
-    function createGrid() {
+    function createGrid(gridSize) {
 
+        for (let i = 0; i < gridSize; i *=1) {
+            const container = document.getElementById("grid-container");
+            const gridSquare = document.createElement("div");
+
+            gridSquare.classList.add("grid-square");
+
+            container.appendChild(gridSquare);
+        }
     };
     
 };
