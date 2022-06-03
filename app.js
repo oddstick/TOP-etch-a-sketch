@@ -1,66 +1,66 @@
-// experimenting with dynamically creating just one div
-// const gridTile = document.createElement("div");  
-// gridTile.setAttribute("style", "height: 250px");
-// document.getElementById("grid-container").appendChild(gridTile);
 
 main();
 
 function main() {
     document.getElementById("gridSizePrompt").addEventListener("click", getUserGridSize);
     document.getElementById("startOver").addEventListener("click", startOver);
-    
     // function prompts user for grid size returns "gridSize"
-    // calls createGrid() if user input is a number between min (1) and max (100)
+    // calls createGrid() if user input is a number between min (16) and max (100)
     function getUserGridSize() {
         let gridSize = prompt("How many squares per side would you like? Please choose a number between 1 and 100.", "16");
-        console.log("gridSize: " + gridSize); // check that user input is passed correctly to gridSize
-        
-        const min = 1;
+        // check that user input is passed correctly to gridSize
+        // console.log("gridSize: " + gridSize); 
+
+        const min = 16;
         const max = 100;
 
         if (isNaN(gridSize) || gridSize < min || gridSize > max) {
-            alert("You must input a number between 1 and 100. Please try again.");
+            alert("You must input a number between 16 and 100. Please try again.");
         }
 
         else if (gridSize >= min || gridSize <= max) {
             createGrid(gridSize);
             document.getElementById("gridSizePrompt").removeEventListener("click", getUserGridSize);
-        }  
+        }
     };
 
     function createGrid(gridSize) {
 
-        for (let i = 0; i < (gridSize * gridSize); i += 1) {
+        for (let i = 0; i < (gridSize * gridSize); i++) {
             const container = document.getElementById("grid-container");
             const gridSquare = document.createElement("div");
 
+            container.style.setProperty("--gridCols", gridSize);
+            container.style.setProperty("--gridRows", gridSize);
+
             gridSquare.classList.add("grid-square");
+            gridSquare.setAttribute("id", "each-square");
+
+            gridSquare.addEventListener("mouseover", function () {
+                gridSquare.style.backgroundColor = "black";
+            })
+            // for random rgb option: 
+            // gridSquare.addEventListener("mouseover", function () {
+            //     gridSquare.style.backgroundColor = random_rgba();
+            // })
 
             container.appendChild(gridSquare);
-            
-            console.log("Number of div nodes created:" + (document.getElementsByTagName("div").length - 1));
+            //check that correct # of divs are created:
+            //console.log("Number of div nodes created:" + (document.getElementsByTagName("div").length - 1));
         }
+
     };
 
     function startOver() {
         window.location.reload();
     }
-    
+
+    //borrowed this from stack overflower--no way I was going to figure out the math on my own...
+    //source: https://stackoverflow.com/questions/23095637/how-do-you-get-random-rgb-in-javascript
+    // function random_rgba() {
+    //     var o = Math.round, r = Math.random, s = 255;
+    //     return 'rgba(' + o(r() * s) + ',' + o(r() * s) + ',' + o(r() * s) + ',' + r().toFixed(1) + ')';
+    // }
+
 };
 
-// BRAINSTORMING: 
-
-// const i = gridSize;
-
-    // for (i = 1; i <= 100; i++) {
-        //call function that prompts user for i (grid is square, so height x width are the same #)
-        //take user input (i) and create grid that is "i" tiles long and "i" tiles wide
-        // do this by calling a function which creates 1 tile "i" times long and "i" times wide
-        // should/can this be done using an array? create an array of divs??
-        // can you give ids/classes to elements created dynamically with JS?
-    // };
-
-// function dynamically creates a grid "i" tiles long x "i" tiles wide
-    // calls function that creates singular tile
-
-// function creates singular tile
